@@ -12,12 +12,17 @@ namespace ProjetoExemplo.Services
             _produtoRepository = produtoRepository;
         }
 
-        public Task Editar(ProdutoDto modelo)
+        public async Task Deletar(Produto modelo)
         {
-            throw new NotImplementedException();
+           await _produtoRepository.DeleteAsync(modelo);
         }
 
-        public async Task Salvar(ProdutoDto model)
+        public async Task Editar(Produto modelo)
+        {
+            await _produtoRepository.EditarAsync(modelo); ;
+        }
+
+        public async Task Salvar(Produto model)
         {
             var form = new Produto { Id = new Guid(), Nome = model.Nome, Valor = model.Valor};
             await _produtoRepository.SalvarAsync(form);

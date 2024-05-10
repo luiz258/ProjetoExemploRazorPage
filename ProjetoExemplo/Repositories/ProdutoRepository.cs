@@ -29,21 +29,27 @@ namespace ProjetoExemplo.Repositories
             return await query.Take(10).ToListAsync();
         }
 
-        public async Task SalvarAsync(Produto model)
+        public async Task SalvarAsync(Produto modelo)
         {
-            await _context.Produtos.AddAsync(model);
+            await _context.Produtos.AddAsync(modelo);
             await _context.SaveChangesAsync();
         }
 
-        public async Task EditarAsync(Produto model)
+        public async Task EditarAsync(Produto modelo)
         {
-            _context.Set<Produto>().Update(model);
+            _context.Set<Produto>().Update(modelo);
             await _context.SaveChangesAsync();
         }
 
-        public Task<Produto> BuscaPorId(Guid id)
+        public async Task<Produto> BuscaPorId(Guid id)
         {
-            throw new NotImplementedException();
+           return await _context.Produtos.FirstOrDefaultAsync(p => p.Id == id);
+        }
+
+        public async Task DeleteAsync(Produto modelo)
+        {
+            _context.Remove(modelo);
+            await _context.SaveChangesAsync();
         }
     }
 }

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ProjetoExemplo.Models;
+using ProjetoExemplo.Models.dto;
 using ProjetoExemplo.Models.Interfaces;
 using ProjetoExemplo.Repositories;
 
@@ -12,7 +13,10 @@ namespace ProjetoExemplo.Pages
 
         private readonly IProdutoService _produtoService;
         private readonly IProdutoRepository _produtoRepository;
+
         public IEnumerable<Produto> Produtos { get; set; }
+        public ProdutoDto Filtro { get; set; }
+
 
         public IndexModel(ILogger<IndexModel> logger, IProdutoService produtoService, IProdutoRepository produtoRepository)
         {
@@ -28,6 +32,14 @@ namespace ProjetoExemplo.Pages
 
             return Page();
 
+        }
+
+        private async Task<IActionResult> OnPostAsync()
+        {
+            var lista = await _produtoRepository.BuscarTodos(Filtro.Valor.Value, Filtro.Nome);
+            Produtos = lista;
+
+            return Page();
         }
     }
 }

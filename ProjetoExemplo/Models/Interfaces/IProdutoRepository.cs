@@ -6,7 +6,8 @@ namespace ProjetoExemplo.Models.Interfaces
     {
         Task<Produto> BuscaPorId(Guid id);
         Task<IEnumerable<Produto>> BuscarTodos(decimal Valor = 0, string Nome = null);
-        Task SalvarAsync(Produto model);
-        Task EditarAsync(Produto model);
+        Task SalvarAsync(Produto modelo);
+        Task EditarAsync(Produto modelo);
+        Task DeleteAsync(Produto modelo);
     }
 }

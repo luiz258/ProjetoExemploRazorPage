@@ -1,14 +1,14 @@
 ﻿@page
-@model ProjetoExemplo.Pages.CreateModel
+@model ProjetoExemplo.Pages.EditModel
 @{
-    ViewData["Title"] = "Criar Produto";
+    ViewData["Title"] = "Editar Produto";
 }
-
 <h3>@ViewData["Title"]</h3>
 <hr />
 <div class="row">
     <div class="col-md-8">
         <form method="post">
+            <input type="hidden" asp-for="produto.Id"/>
             <div class="form-group">
                 <label asp-for="produto.Nome" class="control-label"></label>
                 <input asp-for="produto.Nome" class="form-control" />
@@ -22,7 +22,7 @@
             </div>
 
             <div class="form-group mt-2">
-                
+
                 <input type="submit" value="Salvar" class="btn btn-primary" />
                 <a class="btn btn" asp-page="Index">Voltar</a>
             </div>
@@ -30,7 +30,7 @@
     </div>
 </div>
 
-@section Scripts{
+@section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }

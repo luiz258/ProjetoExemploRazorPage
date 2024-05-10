@@ -5,7 +5,8 @@ namespace ProjetoExemplo.Models.Interfaces
 {
     public interface IProdutoService
     {
-        Task Salvar(ProdutoDto modelo);
-        Task Editar(ProdutoDto modelo);
+        Task Salvar(Produto modelo);
+        Task Editar(Produto modelo);
+        Task Deletar(Produto modelo);
     }
 }

@@ -3,19 +3,73 @@
 @{
     ViewData["Title"] = "Home page";
 }
+<h3>@ViewData["Title"]</h3>
+<hr />
+<p>
+    <a asp-page="Create" class="btn btn-primary">Criar Produto</a>
+</p>
+<div class="card ">
+    <div class="card-header">Filtro de Pesquisa</div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-8">
+                <form method="post">
+                    <div class="form-group">
+                        <label asp-for="Filtro.Nome" class="control-label"></label>
+                        <input asp-for="Filtro.Nome" class="form-control" />
+                        <span asp-validation-for="Filtro.Nome" class="text-danger"></span>
+                    </div>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
-dsadas
+                    <div class="form-group">
+                        <label asp-for="Filtro.Valor" class="control-label"></label>
+                        <input type="number" asp-for="Filtro.Valor" class="form-control" />
+                        <span asp-validation-for="Filtro.Valor" class="text-danger"></span>
+                    </div>
 
-    @foreach(var p in Model.Produtos)
-    {
-        <div class="card">
-            <div class="card-body">
-                This is some text within a card body.
+                    <div class="form-group mt-2">
+                        <input type="submit" value="Pesquisar" class="btn btn-primary" />
+
+                    </div>
+                </form>
             </div>
         </div>
-    }
+    </div>
+</div>
 
+<div class="card mt-3">
+    <div class="card-body">
+        <div class="table table-hover">
+            
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Preço</th>
+                        <th scope="col">Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if(Model !=  null && Model.Produtos.Any()){
+                        @foreach (var p in Model.Produtos)
+                        {
+                            <tr>
+                                <td>@p.Nome</td>
+                                <td>@p.Valor</td>
+                                <td>
+                                    <a asp-page="Edit" asp-route-itemid="@p.Id" class="btn btn-primary">Editar</a>
+                                    <a asp-page="Details" asp-route-itemid="@p.Id" class="btn btn-sucess">Details</a>
+                                    <a asp-page="./Delete" asp-route-itemid="@p.Id" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    } else {
+                        <tr>
+                            <td colspan="5" class="text-center">
+                                Produtos não encontrados!
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
