@@ -42,7 +42,7 @@ O projeto oferece operações básicas de CRUD para uma entidade específica (po
 Contribuições são bem-vindas! Sinta-se à vontade para abrir problemas, solicitações de recursos ou enviar solicitações de pull.
 
 Contato:
-Para mais informações ou dúvidas, entre em contato em seuemail@example.com.
+Para mais informações ou dúvidas, entre em contato em  luizmarcelo258@gmail.com.
 
 Agradecimentos:
 Agradecemos a todos os desenvolvedores e projetos de código aberto que tornaram este projeto possível.
